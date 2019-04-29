@@ -1,0 +1,29 @@
+{
+  "name": "provisioning-proxy",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/app.js",
+    "dev": "NODE_ENV=test node src/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wisnuc/provisioning-proxy.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wisnuc/provisioning-proxy/issues"
+  },
+  "homepage": "https://github.com/wisnuc/provisioning-proxy#readme",
+  "dependencies": {
+    "charm": "^1.0.2",
+    "express": "^4.16.3",
+    "libui-node": "^0.2.1",
+    "morgan": "^1.9.1",
+    "request": "^2.88.0",
+    "superagent": "^4.0.0-beta.5"
+  }
+}
