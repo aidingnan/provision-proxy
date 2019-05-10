@@ -34,11 +34,13 @@ class Pending extends State {
   
   enter() {
     this.resetWindow()
-    console.log('进入等待状态...')
-    process.stdout.write('请输入KEY：')
-    process.stdin.on('data', chunk => {
-      let key = chunk.toString().trim()
-      this.setState(Checking, key)
+    setImmediate(() => {
+      console.log('进入等待状态...')
+      process.stdout.write('请输入KEY：')
+      process.stdin.on('data', chunk => {
+        let key = chunk.toString().trim()
+        this.setState(Checking, key)
+      })
     })
   }
 
