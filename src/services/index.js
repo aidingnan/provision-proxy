@@ -70,9 +70,9 @@ class Checking extends State {
 
   enter (key) {
     let test = process.env.NODE_ENV === 'test' ? 'test/' : ''
-    console.log(`https://abel.nodetribe.com/${test}provisioning/token`)
+    console.log(`http://ec2-52-81-82-240.cn-north-1.compute.amazonaws.com.cn:12345/${test}provisioning/token`)
     this.req = request
-      .get(`https://abel.nodetribe.com/${test}provisioning/token`)
+      .get(`http://ec2-52-81-82-240.cn-north-1.compute.amazonaws.com.cn:12345/${test}provisioning/token`)
       .query({ key })
       .then(res => {
         if (res.status !== 200) {
@@ -114,7 +114,7 @@ class AppService extends EventEmitter {
   registByCsr (body, callback) {
     let test = process.env.NODE_ENV === 'test' ? 'test/' : ''
     request
-      .post(`https://abel.nodetribe.com/${test}provisioning/certificate/sign`)
+      .post(`http://ec2-52-81-82-240.cn-north-1.compute.amazonaws.com.cn:12345/${test}provisioning/certificate/sign`)
       .send(body)
       .then(res => {
         if (res.status !== 200) return callback(res.error)
