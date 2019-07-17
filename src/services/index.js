@@ -2,7 +2,6 @@ const request = require('superagent')
 const EventEmitter = require('events')
 const charm = require('charm')
 class State {
-  
   constructor (ctx, ...args) {
     this.ctx = ctx
     this.ctx.state = this
@@ -121,7 +120,10 @@ class AppService extends EventEmitter {
       .then(res => {
         if (res.status !== 200) return callback(res.error)
         return callback(null, res.body)
-      }, callback)
+      }, err => {
+        console.log(err)
+        callback(err)
+      })
   }
 
 }
