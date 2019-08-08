@@ -70,10 +70,10 @@ class Failed extends State {
 class Checking extends State {
 
   enter (key) {
-    let test = process.env.NODE_ENV === 'test' ? 'test/' : ''
-    console.log(`http://ec2-52-81-82-240.cn-north-1.compute.amazonaws.com.cn:12345/${test}provisioning/token`)
+    let url = process.env.NODE_ENV === 'test' ? 'http://ec2-52-81-82-240.cn-north-1.compute.amazonaws.com.cn:12345/test/provisioning/token'
+      : 'http://ec2-54-223-41-42.cn-north-1.compute.amazonaws.com.cn:12345/provisioning/token'
     this.req = request
-      .get(`http://ec2-52-81-82-240.cn-north-1.compute.amazonaws.com.cn:12345/${test}provisioning/token`)
+      .get(url)
       .query({ key })
       .then(res => {
         if (res.status !== 200) {
@@ -116,6 +116,7 @@ class AppService extends EventEmitter {
     let test = process.env.NODE_ENV === 'test' ? 'test/' : ''
     request
       .post(`http://ec2-52-81-82-240.cn-north-1.compute.amazonaws.com.cn:12345/${test}provisioning/certificate/sign`)
+      .set("Authorization", this.token)
       .send(body)
       .then(res => {
         if (res.status !== 200) return callback(res.error)
