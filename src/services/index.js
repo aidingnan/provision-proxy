@@ -113,9 +113,11 @@ class AppService extends EventEmitter {
   }
 
   registByCsr (body, callback) {
-    let test = process.env.NODE_ENV === 'test' ? 'test/' : ''
+    let url = process.env.NODE_ENV === 'test'
+      ? 'http://ec2-52-81-82-240.cn-north-1.compute.amazonaws.com.cn:12345/test/provisioning/certificate/sign'
+      : 'http://ec2-54-223-41-42.cn-north-1.compute.amazonaws.com.cn:12345/provisioning/certificate/sign'
     request
-      .post(`http://ec2-52-81-82-240.cn-north-1.compute.amazonaws.com.cn:12345/${test}provisioning/certificate/sign`)
+      .post(url)
       .set("Authorization", this.token)
       .send(body)
       .then(res => {
